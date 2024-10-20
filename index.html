@@ -1,23 +1,28 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Redirect</title>
+    <title>OAuth Callback</title>
 </head>
 <body>
-    <h1>Instagram Redirect</h1>
-    <p id="code"></p>
+    <h1>Instagram OAuth Callback</h1>
+    <p>Processing the response...</p>
     <script>
-        // Extract the authorization code from the URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const code = urlParams.get('code');
+        // Extract the authorization code from the URL query parameters
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get('code');
+        const error = params.get('error');
+
         if (code) {
-            document.getElementById('code').innerText = `Authorization Code: ${code}`;
+            // Redirect back to the WinForms app with the authorization code
+            
+            window.location.href = `https://www.instagram.com/?code=${code}`;
+        } else if (error) {
+            document.body.innerHTML = `<p>Error: ${params.get('error_description')}</p>`;
         } else {
-            document.getElementById('code').innerText = 'Authorization code not found.';
+            document.body.innerHTML = "<p>No authorization code found.</p>";
         }
     </script>
 </body>
 </html>
-
