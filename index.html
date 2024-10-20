@@ -1,10 +1,23 @@
  <!DOCTYPE html>
- <html>
- <head>
-     <meta http-equiv="refresh" content="0; url=https://www.instagram.com/samshapem" />
-     <title>Instagram Redirect</title>
- </head>
- <body>
-     <p>If you are not redirected automatically, follow the <a href="https://www.instagram.com/samshapem">link to Instagram</a>.</p>
- </body>
- </html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Redirect</title>
+</head>
+<body>
+    <h1>Instagram Redirect</h1>
+    <p id="code"></p>
+    <script>
+        // Extract the authorization code from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code');
+        if (code) {
+            document.getElementById('code').innerText = `Authorization Code: ${code}`;
+        } else {
+            document.getElementById('code').innerText = 'Authorization code not found.';
+        }
+    </script>
+</body>
+</html>
+
